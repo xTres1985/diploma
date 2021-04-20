@@ -13,4 +13,8 @@ public interface UserService extends BaseService<UserDao, Long> {
 
     UserDto getUserBasedOnAuth (Authentication authentication);
 
+    boolean isUser(Authentication authentication);
+
+    boolean isAdmin(Authentication authentication);
+
 }

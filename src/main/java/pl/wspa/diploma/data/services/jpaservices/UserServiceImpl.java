@@ -1,6 +1,7 @@
 package pl.wspa.diploma.data.services.jpaservices;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +10,7 @@ import pl.wspa.diploma.data.converters.UserDtoToDao;
 import pl.wspa.diploma.data.dao.UserDao;
 import pl.wspa.diploma.data.dto.UserDto;
 import pl.wspa.diploma.data.repositories.UserRepository;
+import pl.wspa.diploma.data.repositories.security.AuthorityRepository;
 import pl.wspa.diploma.data.services.UserService;
 
 import java.util.HashSet;
@@ -17,12 +19,16 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
 
-
+    private final AuthorityRepository authorityRepository;
     private final UserRepository userRepository;
     private final UserDtoToDao userDtoToDao;
     private final UserDaoToDto userDaoToDto;
 
-    public UserServiceImpl(UserRepository userRepository, UserDtoToDao userDtoToDao, UserDaoToDto userDaoToDto) {
+    public UserServiceImpl(AuthorityRepository authorityRepository,
+                           UserRepository userRepository,
+                           UserDtoToDao userDtoToDao,
+                           UserDaoToDto userDaoToDto) {
+        this.authorityRepository = authorityRepository;
         this.userRepository = userRepository;
         this.userDtoToDao = userDtoToDao;
         this.userDaoToDto = userDaoToDto;
@@ -37,9 +43,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDto saveUserDto (UserDto userDto) {
+    public UserDto saveUserDto(UserDto userDto) {
         UserDao detachedUser = userDtoToDao.convert(userDto);
-
+        detachedUser.getAuthorities().add(authorityRepository.findById(2l).get());
         UserDao savedUser = userRepository.save(detachedUser);
 
         return userDaoToDto.convert(savedUser);
@@ -81,5 +87,27 @@ public class UserServiceImpl implements UserService {
     public void deleteById(Long aLong) {
         userRepository.deleteById(aLong);
     }
+
+
+    public boolean isUser(Authentication authentication) {
+        if (authentication == null) {
+            return false;
+        }
+        UserDetails principal = (UserDetails) authentication.getPrincipal();
+        return principal.getAuthorities()
+                .stream()
+                .anyMatch(o -> ((GrantedAuthority) o).getAuthority().equals("ROLE_USER"));
+    }
+
+    public boolean isAdmin(Authentication authentication) {
+        if (authentication == null) {
+            return false;
+        }
+        UserDetails principal = (UserDetails) authentication.getPrincipal();
+        return principal.getAuthorities()
+                .stream()
+                .anyMatch(o -> ((GrantedAuthority) o).getAuthority().equals("ROLE_ADMIN"));
+    }
+
 
 }

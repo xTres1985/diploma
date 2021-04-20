@@ -26,8 +26,11 @@
                 <li class="nav-item" th:if="${authentication == null}">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
-                <li class="nav-item" th:if="${authentication != null}">
+                <li class="nav-item" th:if="${isAdmin && authentication != null}">
                     <a class="nav-link" href="/users">Users</a>
+                </li>
+                <li class="nav-item" th:if="${authentication != null}">
+                    <a class="nav-link"  th:href="@{'/users/' + ${user.id} + '/user'}">Edit User Details</a>
                 </li>
                 <li class="nav-item" th:if="${authentication != null}">
                     <a class="nav-link" href="/adverts/advert/new">New Advert</a>

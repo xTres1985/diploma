@@ -28,33 +28,45 @@ public class UserController {
     }
 
     @GetMapping("users/{id}/user")
-    public String user(@PathVariable String id, Model model) {
+    public String user(@PathVariable String id, Model model, Authentication authentication) {
 
-        model.addAttribute("user", userService.findById(new Long(id)));
+        model.addAttribute("founduser", userService.findById(new Long(id)));
+        model.addAttribute("authentication", authentication);
+        model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
         return "user/show";
     }
 
     @GetMapping("/register")
-    public String newUser(Model model) {
+    public String newUser(Model model, Authentication authentication) {
 
-        model.addAttribute("user", new UserDto());
+        model.addAttribute("userDto", new UserDto());
+        model.addAttribute("authentication", authentication);
+        model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
         return "user/register";
     }
 
-    @PostMapping("user")
+    @PostMapping("/register")
     public String register(@ModelAttribute UserDto userDto) {
 
         UserDto registeredUser = userService.saveUserDto(userDto);
 
-        return "redirect:/users/" + registeredUser.getId() + "/user";
+        return "redirect:/";
     }
 
     @GetMapping("users/{id}/update")
-    public String updateUser(@PathVariable String id, Model model) {
+    public String updateUser(@PathVariable String id, Model model, Authentication authentication) {
 
-        model.addAttribute("user", userService.findById(Long.valueOf(id)));
+        model.addAttribute("userDto", userService.findById(Long.valueOf(id)));
+        model.addAttribute("authentication", authentication);
+        model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
 
         return "user/register";
@@ -64,6 +76,8 @@ public class UserController {
     public String login(Authentication authentication, Model model) {
         model.addAttribute("auth", authentication);
         model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
         return "user/login";
     }

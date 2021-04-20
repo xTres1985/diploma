@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -24,9 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/adverts", "/login", "/register",  "/", "/vendor/**", "/css/**").permitAll()
+                .antMatchers("/adverts", "/login", "/register", "/", "/vendor/**", "/css/**").permitAll()
                 .antMatchers("/adverts/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/users/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
@@ -42,11 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/");
 
 
-
-                // h2-console config
+        // h2-console config
         http.headers().frameOptions().sameOrigin();
     }
-
 
 
 }

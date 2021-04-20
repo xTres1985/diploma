@@ -30,6 +30,8 @@ public class AdvertController {
         model.addAttribute("adverts", advertService.findAll());
         model.addAttribute("authentication", authentication);
         model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
         return "advert/adverts";
     }
@@ -41,6 +43,8 @@ public class AdvertController {
         model.addAttribute("advert", advertService.findAdvertDtoById(new Long(id)));
         model.addAttribute("authentication", authentication);
         model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 //        model.addAttribute("user", userService.findUserDtoById(advertService.findAdvertDtoById(new Long(id)).getUserDto().getId()));
 
 
@@ -54,6 +58,8 @@ public class AdvertController {
         model.addAttribute("advertType", AdvertType.values());
         model.addAttribute("authentication", authentication);
         model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
         return "advert/advertform";
     }
@@ -75,6 +81,8 @@ public class AdvertController {
         model.addAttribute("advertType", AdvertType.values());
         model.addAttribute("authentication", authentication);
         model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
         return "advert/advertform";
 

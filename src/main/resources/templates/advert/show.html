@@ -42,9 +42,9 @@
                 </table>
                 <b><p th:text="${advert.description}"></p></b>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/adverts/' + ${advert.id} + '/update'}">Update</a>
+                   th:href="@{'/adverts/' + ${advert.id} + '/update'}" th:if="${isUser && user.id == advert.userDto.id}">Update</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/adverts/' + ${advert.id} + '/delete'}">Delete</a>
+                   th:href="@{'/adverts/' + ${advert.id} + '/delete'}" th:if="${isUser && user.id == advert.userDto.id}" >Delete</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts/advert/new}">New advert</a>
             </div>
 

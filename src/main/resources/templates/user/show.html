@@ -16,7 +16,7 @@
 
             <div class="image">
                 <img src="/static/images/guacamole400x400WithX.jpg"
-                     th:src="@{'/users/' +${user.id} + '/user/useravatar'}"
+                     th:src="@{'/users/' +${founduser.id} + '/user/useravatar'}"
                      width="200" height="200">
             </div>
 
@@ -35,12 +35,12 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <th th:text="${user.email}"></th>
-                        <th th:text="${user.nickname}">Title</th>
-                        <th th:text="${user.phone}"></th>
-                        <th th:text="${user.firstname}"></th>
-                        <th th:text="${user.lastname}"></th>
-                        <th th:text="${user.address}"></th>
+                        <th th:text="${founduser.email}"></th>
+                        <th th:text="${founduser.nickname}">Title</th>
+                        <th th:text="${founduser.phone}"></th>
+                        <th th:text="${founduser.firstname}"></th>
+                        <th th:text="${founduser.lastname}"></th>
+                        <th th:text="${founduser.address}"></th>
                         <!--                    <th><a href="#" th:href="@{'/users/user/' + ${advert.user.id}}" th:text="${advert.user.nickname}"></a> </th>-->
                     </tr>
                     </tbody>
@@ -51,6 +51,9 @@
                    th:href="@{'/users/' + ${user.id} + '/user/image'}" role="button">Change Image</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts/advert/new}">New
                     advert</a>
+
+
+
                 <h3>List of adverts</h3>
                 <table class="table table-striped" th:each="advert : ${user.adverts}">
                     <th><a href="#" th:href="@{'/adverts/' + ${advert.id} + '/show'}"

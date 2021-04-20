@@ -5,6 +5,8 @@ import lombok.*;
 import pl.wspa.diploma.security.Authority;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,16 +22,17 @@ public class UserDao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @NotBlank
+    @Pattern(regexp = "^[0-9a-z_.-]+@[0-9a-z-.]+[.][a-z]{2,}", message = "email is incorrect")
     private String email;
     private String password;
 
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "user_authority",
-    joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-    inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
-    private Set<Authority> authorities;
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+    private Set<Authority> authorities = new HashSet<>();
 
     private String nickname;
     private String phone;
@@ -43,8 +46,6 @@ public class UserDao {
     @Singular
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userDao")
     private Set<AdvertDao> adverts = new HashSet<>();
-
-
 
 
 }

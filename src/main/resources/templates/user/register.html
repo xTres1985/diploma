@@ -15,37 +15,39 @@
         <div class="col-lg-9">
 
             <div>
-                <h2>New Advert</h2>
-                <form th:object="${user}" th:action="@{/user/}" method="post">
+                <h2>Register new user</h2>
+                <form th:object="${userDto}" th:action="@{/register}" method="post">
                     <input type="hidden" th:field="*{id}"/>
                     <div class="form-group">
                         <label><b>Email address:</b></label>
-                        <input type="text" placeholder="Title" class="form-control" maxlength="50" th:field="*{email}"
-                               th:value="${user.email}"></br>
+                        <input type="email" placeholder="Title" class="form-control" maxlength="50" th:field="*{email}"
+                               th:value="${userDto.email}"></br>
 
                         <label><b>Password:</b></label>
-                        <input type="text" placeholder="Password" class="form-control" maxlength="50" th:field="*{password}"
-                               th:value="${user.password}"></br>
+                        <input type="password" placeholder="Password" class="form-control" maxlength="50"
+                               th:field="*{password}"
+                               th:value="${userDto.password}"></br>
 
-                        <label><b>User name:</b></label>
-                        <input type="text" placeholder="User name" class="form-control" maxlength="50" th:field="*{nickname}"
-                               th:value="${user.nickname}"></br>
+                        <label><b>User name:</b></label >
+                        <input type="text" placeholder="User name" class="form-control" maxlength="50"
+                               th:field="*{nickname}"
+                               th:value="${userDto.nickname}" ></br>
 
-                        <label><b>Telephone number:</b></label>
-                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
-                               th:field="*{phone}" th:value="${user.phone}"></br>
+                        <label th:if="${authentication != null}"><b>Telephone number:</b></label>
+                        <input th:if="${authentication != null}" type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{phone}" th:value="${userDto.phone}"></br>
 
-                        <label><b>First name:</b></label>
-                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
-                               th:field="*{firstname}" th:value="${user.firstname}"></br>
+                        <label th:if="${authentication != null}"><b>First name:</b></label>
+                        <input th:if="${authentication != null}" type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{firstname}" th:value="${userDto.firstname}"></br>
 
-                        <label><b>Last name:</b></label>
-                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
-                               th:field="*{lastname}" th:value="${user.lastname}"></br>
+                        <label th:if="${authentication != null}"><b>Last name:</b></label>
+                        <input th:if="${authentication != null}" type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{lastname}" th:value="${userDto.lastname}"></br>
 
-                        <label><b>Address:</b></label>
-                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
-                               th:field="*{address}" th:value="${user.address}"></br>
+                        <label th:if="${authentication != null}"><b>Address:</b></label>
+                        <input th:if="${authentication != null}" type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{address}" th:value="${userDto.address}"></br>
 
                         <input type="submit" value="Save" class="btn btn-primary mt-2 float-center">
 
