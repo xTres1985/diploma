@@ -1,1 +1,1 @@
-# diploma
+# Engineering thesis webapp project. 
