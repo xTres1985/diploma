@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head th:replace="fragments/head::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="fragments/navi::navi"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Publication Date</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Offered Item</th>
+                        <th>Requested Item</th>
+                        <th>Price</th>
+<!--                        <th>User</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th th:text="${advert.publicationDate}"></th>
+                        <th th:text="${advert.title}">Title</th>
+                        <th th:text="${advert.advertType.advertTypeName}"></th>
+                        <th th:text="${advert.offeredItem}"></th>
+                        <th th:text="${advert.requestedItem}"></th>
+                        <th th:text="${advert.price}"></th>
+<!--                        link to user profile to be implemented-->
+<!--                        <th th:text="${user.getNickname()}"></th>-->
+                    </tr>
+                    </tbody>
+                </table>
+                <b><p th:text="${advert.description}"></p></b>
+                <a type="submit" class="btn btn-primary mt-2 float-center"
+                   th:href="@{'/adverts/' + ${advert.id} + '/update'}">Update</a>
+                <a type="submit" class="btn btn-primary mt-2 float-center"
+                   th:href="@{'/adverts/' + ${advert.id} + '/delete'}">Delete</a>
+                <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts/advert/new}">New advert</a>
+            </div>
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="fragments/footer::footer"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

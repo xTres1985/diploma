@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head th:replace="fragments/head::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="fragments/navi::navi"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+
+            <div>
+                <h2>New Advert</h2>
+                <form th:object="${user}" th:action="@{/user/}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="form-group">
+                        <label><b>Email address:</b></label>
+                        <input type="text" placeholder="Title" class="form-control" maxlength="50" th:field="*{email}"
+                               th:value="${user.email}"></br>
+
+                        <label><b>Password:</b></label>
+                        <input type="text" placeholder="Password" class="form-control" maxlength="50" th:field="*{password}"
+                               th:value="${user.password}"></br>
+
+                        <label><b>User name:</b></label>
+                        <input type="text" placeholder="User name" class="form-control" maxlength="50" th:field="*{nickname}"
+                               th:value="${user.nickname}"></br>
+
+                        <label><b>Telephone number:</b></label>
+                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{phone}" th:value="${user.phone}"></br>
+
+                        <label><b>First name:</b></label>
+                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{firstname}" th:value="${user.firstname}"></br>
+
+                        <label><b>Last name:</b></label>
+                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{lastname}" th:value="${user.lastname}"></br>
+
+                        <label><b>Address:</b></label>
+                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{address}" th:value="${user.address}"></br>
+
+                        <input type="submit" value="Save" class="btn btn-primary mt-2 float-center">
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="fragments/footer::footer"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

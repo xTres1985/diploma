@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head th:replace="fragments/head::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="fragments/navi::navi"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="panel-heading">
+                <h1 class="panel-title">Upload a new recipe image</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <form action="http:\\localhost" method="post" enctype="multipart/form-data"
+                              th:action="@{'/users/' + ${user.id} + '/user/image'}">
+                            <label class="control-label">Select file</label>
+                            <input id="imagefile" name="imagefile" type="file" class="file">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="fragments/footer::footer"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Head -->
+<head th:replace="fragments/head::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="fragments/navi::navi"></nav>
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-9">
+
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nickname</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${users}">
+                        <th><a href="#" th:href="@{'/users/' + ${user.id} + '/user'}"
+                               th:text="${user.nickname}">Title</a>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+                <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{adverts/advert/new}">New
+                    advert</a>
+            </div>
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="fragments/footer::footer"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

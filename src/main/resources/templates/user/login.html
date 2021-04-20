@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head th:replace="fragments/head::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="fragments/navi::navi"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+
+            <div>
+                <h2>Login</h2>
+
+                <form th:action="@{/login_process}" th:method="post">
+                    <div class="form-group">
+
+                        <input name="email" type="email" placeholder="input your email" class="form-control"
+                               required></br>
+                        <input name="password" type="password" placeholder="input your password" class="form-control"
+                               required></br>
+                        <input type="submit" value="login" class="btn btn-primary mt-2 float-center">
+
+                        <!-- button -->
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="fragments/footer::footer"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

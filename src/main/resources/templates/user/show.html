@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head th:replace="fragments/head::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="fragments/navi::navi"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+
+            <div class="image">
+                <img src="/static/images/guacamole400x400WithX.jpg"
+                     th:src="@{'/users/' +${user.id} + '/user/useravatar'}"
+                     width="200" height="200">
+            </div>
+
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Nickname</th>
+                        <th>Telephone Number</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <!--                    <th>User</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th th:text="${user.email}"></th>
+                        <th th:text="${user.nickname}">Title</th>
+                        <th th:text="${user.phone}"></th>
+                        <th th:text="${user.firstname}"></th>
+                        <th th:text="${user.lastname}"></th>
+                        <th th:text="${user.address}"></th>
+                        <!--                    <th><a href="#" th:href="@{'/users/user/' + ${advert.user.id}}" th:text="${advert.user.nickname}"></a> </th>-->
+                    </tr>
+                    </tbody>
+                </table>
+                <a type="submit" class="btn btn-primary mt-2 float-center"
+                   th:href="@{'/users/' + ${user.id} + '/update'}">Update</a>
+                <a type="submit" class="btn btn-primary mt-2 float-center"
+                   th:href="@{'/users/' + ${user.id} + '/user/image'}" role="button">Change Image</a>
+                <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts/advert/new}">New
+                    advert</a>
+                <h3>List of adverts</h3>
+                <table class="table table-striped" th:each="advert : ${user.adverts}">
+                    <th><a href="#" th:href="@{'/adverts/' + ${advert.id} + '/show'}"
+                           th:text="${advert.title}">Title</a></th>
+                </table>
+
+            </div>
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="fragments/footer::footer"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<head th:replace="fragments/head::head"></head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="fragments/navi::navi"></nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+
+            <div>
+                <h2>New Advert</h2>
+                <form th:object="${advert}" th:action="@{/advert/}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="form-group">
+                        <label><b>Title:</b> </label>
+
+                        <input type="text" placeholder="Title" class="form-control" maxlength="50" th:field="*{title}"
+                               th:value="${advert.title}" required></br>
+
+                        <label><b>Select Category</b></label></br>
+                        <select class="form-control" th:field="*{advertType}">
+                            <option
+                                    th:each="type : ${advertType}"
+                                    th:value="${type}"
+                                    th:text="${type.advertTypeName}">
+                            </option>
+
+                        </select></br>
+
+                        <label><b>Requested Item:</b></label>
+                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                               th:field="*{requestedItem}"></br>
+
+
+                        <label><b>Offered Item:</b></label>
+                        <input type="text" placeholder="Offered Item" class="form-control" maxlength="50"
+                               th:field="*{offeredItem}"></br>
+
+                        <label><b>Price:</b></label>
+                        <input type="number" step="0.01" placeholder="Put your price" class="form-control"
+                               th:field="*{price}"></br>
+
+                        <label><b>Description:</b></label>
+                        <textarea placeholder="input your post content" class="form-control"
+                                  maxlength="300" th:field="*{description}"></textarea></br>
+
+                        <input type="submit" value="Save" class="btn btn-primary mt-2 float-center">
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer th:replace="fragments/footer::footer"></footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
