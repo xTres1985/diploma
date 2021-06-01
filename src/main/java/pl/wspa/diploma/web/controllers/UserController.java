@@ -20,9 +20,13 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String allUsers(Model model) {
+    public String allUsers(Model model, Authentication authentication) {
 
         model.addAttribute("users", userService.findAll());
+        model.addAttribute("authentication", authentication);
+        model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
         return "user/users";
     }
@@ -82,5 +86,12 @@ public class UserController {
         return "user/login";
     }
 
+    @GetMapping("/users/{id}/delete")
+    public String deleteUserById(@PathVariable String id) {
+
+        userService.deleteById(Long.valueOf(id));
+
+        return "redirect:/users";
+    }
 
 }

@@ -15,7 +15,8 @@
         <div class="col-lg-9">
 
             <div>
-                <h2>Register new user</h2>
+                <h2 th:if="${authentication != null}">Update user details</h2>
+                <h2 th:if="${authentication == null}">Register new user</h2>
                 <form th:object="${userDto}" th:action="@{/register}" method="post">
                     <input type="hidden" th:field="*{id}"/>
                     <div class="form-group">
@@ -50,6 +51,8 @@
                                th:field="*{address}" th:value="${userDto.address}"></br>
 
                         <input type="submit" value="Save" class="btn btn-primary mt-2 float-center">
+                        <a th:if="${authentication != null}" type="submit" class="btn btn-primary mt-2 float-center" th:href="@{'/users/' + ${user.id} + '/user'}">Cancel</a>
+                        <a th:if="${authentication == null}" type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts}">Cancel</a>
 
                     </div>
                 </form>

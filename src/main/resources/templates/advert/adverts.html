@@ -24,6 +24,7 @@
                         <th>Publication Date</th>
                         <th>Title</th>
                         <th>Category</th>
+                        <th>User</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,10 +34,11 @@
                                th:text="${advert.title}">Title</a>
                         </th>
                         <th th:text="${advert.advertType.advertTypeName}"></th>
+                        <th th:text="${advert.userDao.nickname}"></th>
                     </tr>
                     </tbody>
                 </table>
-                <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{adverts/advert/new}">New advert</a>
+<!--                <a th:if="${authentication != null}" type="submit" class="btn btn-primary mt-2 float-center" th:href="@{adverts/advert/new}">New advert</a>-->
             </div>
 
         </div>

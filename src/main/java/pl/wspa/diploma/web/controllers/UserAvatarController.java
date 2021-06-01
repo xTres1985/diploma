@@ -1,6 +1,8 @@
 package pl.wspa.diploma.web.controllers;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@Controller
 public class UserAvatarController {
 
     private final UserService userService;
@@ -28,11 +31,15 @@ public class UserAvatarController {
     }
 
     @GetMapping("users/{id}/user/image")
-    public String userAvatarUploadForm(@PathVariable String id, Model model) {
+    public String userAvatarUploadForm(@PathVariable String id, Model model, Authentication authentication) {
 
         model.addAttribute("user", userService.findUserDtoById(Long.valueOf(id)));
+        model.addAttribute("authentication", authentication);
+        model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
-        return "/user/avatarloader";
+        return "/user/avatar";
     }
 
     @PostMapping("users/{id}/user/image")

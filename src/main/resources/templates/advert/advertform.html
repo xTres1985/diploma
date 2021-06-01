@@ -15,7 +15,8 @@
         <div class="col-lg-9">
 
             <div>
-                <h2>New Advert</h2>
+                <h2 th:if="${advert.id == null}" >New Advert</h2>
+                <h2 th:if="${advert.id != null}" >Edit Advert</h2>
                 <form th:object="${advert}" th:action="@{/advert/}" method="post">
                     <input type="hidden" th:field="*{id}"/>
                     <div class="form-group">
@@ -52,6 +53,8 @@
                                   maxlength="300" th:field="*{description}"></textarea></br>
 
                         <input type="submit" value="Save" class="btn btn-primary mt-2 float-center">
+                        <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts}" th:if="${advert.id == null}">Cancel</a>
+                        <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{'/adverts/' + ${advert.id} + '/show'}" th:if="${advert.id != null}">Cancel</a>
 
                     </div>
                 </form>

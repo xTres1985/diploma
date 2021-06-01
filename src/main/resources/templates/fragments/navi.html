@@ -7,7 +7,7 @@
     <div class="container">
         <a class="navbar-brand" href="#">Planszówkowo</a>
         <a th:if="${authentication == null}" class="navbar-brand" href="#"> niezalogowano </a>
-        <a th:if="${authentication != null}" th:text="${user.email}" class="navbar-brand" href="#"> zalogowano </a>
+        <a th:if="${authentication != null}" th:text="${user.nickname}" class="navbar-brand" href="#"> zalogowano </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -29,10 +29,10 @@
                 <li class="nav-item" th:if="${isAdmin && authentication != null}">
                     <a class="nav-link" href="/users">Users</a>
                 </li>
-                <li class="nav-item" th:if="${authentication != null}">
+                <li class="nav-item" th:if="${isUser && authentication != null}">
                     <a class="nav-link"  th:href="@{'/users/' + ${user.id} + '/user'}">Edit User Details</a>
                 </li>
-                <li class="nav-item" th:if="${authentication != null}">
+                <li class="nav-item" th:if="${isUser && authentication != null}">
                     <a class="nav-link" href="/adverts/advert/new">New Advert</a>
                 </li>
                 <li class="nav-item">

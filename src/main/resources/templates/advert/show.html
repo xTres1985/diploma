@@ -19,24 +19,26 @@
                     <thead>
                     <tr>
                         <th>Publication Date</th>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Offered Item</th>
-                        <th>Requested Item</th>
-                        <th>Price</th>
-<!--                        <th>User</th>-->
+                        <th th:if="${advert.title != null}">Title</th>
+                        <th th:if="${advert.advertType != null}">Category</th>
+                        <th th:if="${advert.offeredItem != null}">Offered Item</th>
+                        <th th:if="${advert.requestedItem != null}">Requested Item</th>
+                        <th th:if="${advert.price != null}">Price</th>
+                        <th>User</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <th th:text="${advert.publicationDate}"></th>
-                        <th th:text="${advert.title}">Title</th>
-                        <th th:text="${advert.advertType.advertTypeName}"></th>
-                        <th th:text="${advert.offeredItem}"></th>
-                        <th th:text="${advert.requestedItem}"></th>
-                        <th th:text="${advert.price}"></th>
-<!--                        link to user profile to be implemented-->
-<!--                        <th th:text="${user.getNickname()}"></th>-->
+                        <th th:text="${advert.title}" th:if="${advert.title != null}" th:default="null">Title</th>
+                        <th th:text="${advert.advertType.advertTypeName}" th:if="${advert.advertType != null}" th:default="null"></th>
+                        <th th:text="${advert.offeredItem}" th:if="${advert.offeredItem != null}" th:default="null"></th>
+                        <th th:text="${advert.requestedItem}" th:if="${advert.requestedItem != null}" th:default="null"></th>
+                        <th th:text="${advert.price}" th:if="${advert.price != null}" th:default="null"></th>
+                        <th>
+                            <a href="#" th:text="${advert.userDto.nickname}" th:href="@{'/users/' + ${advert.userDto.id} + '/user'}"></a>
+                        </th>
+
                     </tr>
                     </tbody>
                 </table>
@@ -45,7 +47,12 @@
                    th:href="@{'/adverts/' + ${advert.id} + '/update'}" th:if="${isUser && user.id == advert.userDto.id}">Update</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
                    th:href="@{'/adverts/' + ${advert.id} + '/delete'}" th:if="${isUser && user.id == advert.userDto.id}" >Delete</a>
-                <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts/advert/new}">New advert</a>
+                <a type="submit" class="btn btn-primary mt-2 float-center"
+                   th:href="@{'/adverts/' + ${advert.id} + '/delete'}" th:if="${isAdmin}" >Delete</a>
+                <a type="submit" class="btn btn-primary mt-2 float-center"
+                   th:href="@{/adverts}" th:if="${isUser}">Go to adverts</a>
+                <a type="submit" class="btn btn-primary mt-2 float-center"
+                   th:href="@{'/users/' + ${advert.userDto.id} + '/user'}" th:if="${isUser && user.id == advert.userDto.id}">Go to profile</a>
             </div>
 
         </div>
