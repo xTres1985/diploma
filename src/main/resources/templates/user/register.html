@@ -15,44 +15,44 @@
         <div class="col-lg-9">
 
             <div>
-                <h2 th:if="${authentication != null}">Update user details</h2>
-                <h2 th:if="${authentication == null}">Register new user</h2>
+                <h2 th:if="${authentication != null}">Edytuj profil</h2>
+                <h2 th:if="${authentication == null}">Rejestracja użytkownika</h2>
                 <form th:object="${userDto}" th:action="@{/register}" method="post">
                     <input type="hidden" th:field="*{id}"/>
                     <div class="form-group">
-                        <label><b>Email address:</b></label>
-                        <input type="email" placeholder="Title" class="form-control" maxlength="50" th:field="*{email}"
+                        <label><b>Adres email:</b></label>
+                        <input type="email" placeholder="email" class="form-control" maxlength="50" th:field="*{email}"
                                th:value="${userDto.email}"></br>
 
-                        <label><b>Password:</b></label>
-                        <input type="password" placeholder="Password" class="form-control" maxlength="50"
+                        <label><b>Hasło:</b></label>
+                        <input type="password" placeholder="hasło" class="form-control" maxlength="50"
                                th:field="*{password}"
-                               th:value="${userDto.password}"></br>
+                               th:value="${userDto.password}" required></br>
 
-                        <label><b>User name:</b></label >
-                        <input type="text" placeholder="User name" class="form-control" maxlength="50"
+                        <label><b>Nazwa użytkownika:</b></label >
+                        <input type="text" placeholder="nazwa użytkownika" class="form-control" maxlength="50"
                                th:field="*{nickname}"
                                th:value="${userDto.nickname}" ></br>
 
-                        <label th:if="${authentication != null}"><b>Telephone number:</b></label>
-                        <input th:if="${authentication != null}" type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                        <label th:if="${authentication != null}"><b>Numer telefonu:</b></label>
+                        <input th:if="${authentication != null}" type="text" placeholder="numer telefonu" class="form-control" maxlength="50"
                                th:field="*{phone}" th:value="${userDto.phone}"></br>
 
-                        <label th:if="${authentication != null}"><b>First name:</b></label>
-                        <input th:if="${authentication != null}" type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                        <label th:if="${authentication != null}"><b>Imie:</b></label>
+                        <input th:if="${authentication != null}" type="text" placeholder="imię" class="form-control" maxlength="50"
                                th:field="*{firstname}" th:value="${userDto.firstname}"></br>
 
-                        <label th:if="${authentication != null}"><b>Last name:</b></label>
-                        <input th:if="${authentication != null}" type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                        <label th:if="${authentication != null}"><b>Nazwisko:</b></label>
+                        <input th:if="${authentication != null}" type="text" placeholder="nazwisko" class="form-control" maxlength="50"
                                th:field="*{lastname}" th:value="${userDto.lastname}"></br>
 
-                        <label th:if="${authentication != null}"><b>Address:</b></label>
-                        <input th:if="${authentication != null}" type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                        <label th:if="${authentication != null}"><b>Adres:</b></label>
+                        <input th:if="${authentication != null}" type="text" placeholder="adres" class="form-control" maxlength="50"
                                th:field="*{address}" th:value="${userDto.address}"></br>
 
-                        <input type="submit" value="Save" class="btn btn-primary mt-2 float-center">
-                        <a th:if="${authentication != null}" type="submit" class="btn btn-primary mt-2 float-center" th:href="@{'/users/' + ${user.id} + '/user'}">Cancel</a>
-                        <a th:if="${authentication == null}" type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts}">Cancel</a>
+                        <input type="submit" value="Zapisz" class="btn btn-primary mt-2 float-center">
+                        <a th:if="${authentication != null}" type="submit" class="btn btn-primary mt-2 float-center" th:href="@{'/users/' + ${user.id} + '/user'}">Anuluj</a>
+                        <a th:if="${authentication == null}" type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts}">Anuluj</a>
 
                     </div>
                 </form>

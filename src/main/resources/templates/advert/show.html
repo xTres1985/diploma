@@ -18,13 +18,13 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Publication Date</th>
-                        <th th:if="${advert.title != null}">Title</th>
-                        <th th:if="${advert.advertType != null}">Category</th>
-                        <th th:if="${advert.offeredItem != null}">Offered Item</th>
-                        <th th:if="${advert.requestedItem != null}">Requested Item</th>
-                        <th th:if="${advert.price != null}">Price</th>
-                        <th>User</th>
+                        <th>Data publikacji</th>
+                        <th th:if="${advert.title != null}">Tytuł</th>
+                        <th th:if="${advert.advertType != null}">Kategoria</th>
+                        <th th:if="${advert.offeredItem != null}">Oferuje</th>
+                        <th th:if="${advert.requestedItem != null}">Poszukuje</th>
+                        <th th:if="${advert.price != null}">Cena</th>
+                        <th>Użytkownik</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,15 +44,15 @@
                 </table>
                 <b><p th:text="${advert.description}"></p></b>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/adverts/' + ${advert.id} + '/update'}" th:if="${isUser && user.id == advert.userDto.id}">Update</a>
+                   th:href="@{'/adverts/' + ${advert.id} + '/update'}" th:if="${isUser && user.id == advert.userDto.id}">Aktualizuj</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/adverts/' + ${advert.id} + '/delete'}" th:if="${isUser && user.id == advert.userDto.id}" >Delete</a>
+                   th:href="@{'/adverts/' + ${advert.id} + '/delete'}" th:if="${isUser && user.id == advert.userDto.id}" >Usuń</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/adverts/' + ${advert.id} + '/delete'}" th:if="${isAdmin}" >Delete</a>
+                   th:href="@{'/adverts/' + ${advert.id} + '/delete'}" th:if="${isAdmin}" >Usuń</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{/adverts}" th:if="${isUser}">Go to adverts</a>
+                   th:href="@{/adverts}" th:if="${isUser}">Ogłoszenia</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/users/' + ${advert.userDto.id} + '/user'}" th:if="${isUser && user.id == advert.userDto.id}">Go to profile</a>
+                   th:href="@{'/users/' + ${advert.userDto.id} + '/user'}" th:if="${isUser && user.id == advert.userDto.id}">Profil użytkownika</a>
             </div>
 
         </div>

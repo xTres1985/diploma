@@ -5,9 +5,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" th:fragment="navi">
     <div class="container">
-        <a class="navbar-brand" href="#">Planszówkowo</a>
+        <a class="navbar-brand" href="/">Planszówkowo</a>
         <a th:if="${authentication == null}" class="navbar-brand" href="#"> niezalogowano </a>
-        <a th:if="${authentication != null}" th:text="${user.nickname}" class="navbar-brand" href="#"> zalogowano </a>
+        <a th:if="${authentication != null}" th:text="'Witaj ' + ${user.nickname}" class="navbar-brand" href="#"> zalogowano </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -17,29 +17,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Strona Główna</a>
                 </li>
                 <li class="nav-item" th:if="${authentication == null}">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="/register">Rejestracja</a>
                 </li>
                 <li class="nav-item" th:if="${authentication == null}">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/login">Zaloguj</a>
                 </li>
                 <li class="nav-item" th:if="${isAdmin && authentication != null}">
-                    <a class="nav-link" href="/users">Users</a>
+                    <a class="nav-link" href="/users">Użytkownicy</a>
                 </li>
                 <li class="nav-item" th:if="${isUser && authentication != null}">
-                    <a class="nav-link"  th:href="@{'/users/' + ${user.id} + '/user'}">Edit User Details</a>
+                    <a class="nav-link"  th:href="@{'/users/' + ${user.id} + '/user'}">Edytuj dane użytkownika</a>
                 </li>
                 <li class="nav-item" th:if="${isUser && authentication != null}">
-                    <a class="nav-link" href="/adverts/advert/new">New Advert</a>
+                    <a class="nav-link" href="/adverts/advert/new">Nowe ogłoszenie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/adverts">Adverts</a>
+                    <a class="nav-link" href="/adverts">Ogłoszenia</a>
                 </li>
                 <li class="nav-item" th:if="${authentication != null}">
-                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    <a class="nav-link" th:href="@{/logout}">Wyloguj</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">O mnie</a>
                 </li>
             </ul>
         </div>

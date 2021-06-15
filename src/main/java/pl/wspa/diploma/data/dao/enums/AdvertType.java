@@ -2,12 +2,12 @@ package pl.wspa.diploma.data.dao.enums;
 
 public enum AdvertType {
 
-    BUY("Buying"),
-    SELL("Selling"),
-    EXCHANGE("Will Exchange"),
-    SEARCH("Searching for "),
-    SERVICE("Offering Service"),
-    NA("Not applicable");
+    BUY("kupie"),
+    SELL("sprzedam"),
+    EXCHANGE("wymienie"),
+    SEARCH("szukam "),
+    SERVICE("usługa"),
+    NA("inne");
 
     String advertTypeName;
 

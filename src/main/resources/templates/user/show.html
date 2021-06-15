@@ -25,11 +25,11 @@
                     <thead>
                     <tr>
                         <th>Email</th>
-                        <th>Nickname</th>
-                        <th>Telephone Number</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Address</th>
+                        <th>Nazwa użytkownika</th>
+                        <th>Telefon</th>
+                        <th>Imie</th>
+                        <th>Nazwisko</th>
+                        <th>Adres</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -47,25 +47,25 @@
                 <!-- User function buttons -->
                 <a type="submit" class="btn btn-primary mt-2 float-center"
                    th:href="@{'/users/' + ${user.id} + '/update'}"
-                   th:if="${isUser && founduser.id == user.id}">Update</a>
+                   th:if="${isUser && founduser.id == user.id}">Aktualizuj</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
                    th:href="@{'/users/' + ${user.id} + '/user/image'}" role="button"
-                   th:if="${isUser && founduser.id == user.id}">Change Image</a>
+                   th:if="${isUser && founduser.id == user.id}">Zmień awatar</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{/adverts}" th:if="${isUser && founduser.id == user.id}">Go to adverts</a>
+                   th:href="@{/adverts}" th:if="${isUser && founduser.id == user.id}">Ogłoszenia</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts/advert/new}"
-                   th:if="${isUser && founduser.id == user.id}">New advert</a>
+                   th:if="${isUser && founduser.id == user.id}">Nowe ogłoszenie</a>
 
                 <!-- Admin function buttons -->
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/users/' + ${founduser.id} + '/delete'}" th:if="${isAdmin}">Delete</a>
+                   th:href="@{'/users/' + ${founduser.id} + '/delete'}" th:if="${isAdmin}">Usuń</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/users/' + ${founduser.id} + '/update'}" th:if="${isAdmin}">Update</a>
+                   th:href="@{'/users/' + ${founduser.id} + '/update'}" th:if="${isAdmin}">Aktualizuj</a>
                 <a type="submit" class="btn btn-primary mt-2 float-center"
-                   th:href="@{'/users/' + ${user.id} + '/user/image'}" role="button" th:if="${isAdmin}">Change Image</a>
+                   th:href="@{'/users/' + ${user.id} + '/user/image'}" role="button" th:if="${isAdmin}">Zmień awatar</a>
 
 
-                <h3>List of adverts</h3>
+                <h3>Ogłoszenia użytkownika</h3>
                 <table class="table table-striped" th:each="advert : ${founduser.adverts}">
                     <th><a href="#" th:href="@{'/adverts/' + ${advert.id} + '/show'}"
                            th:text="${advert.title}">Title</a></th>

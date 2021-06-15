@@ -14,7 +14,7 @@ import pl.wspa.diploma.data.repositories.security.AuthorityRepository;
 
 import java.time.LocalDate;
 
-@Component
+//@Component
 public class InitialDataLoader implements CommandLineRunner {
 
     private final UserRepository userRepository;

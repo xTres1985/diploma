@@ -15,17 +15,17 @@
         <div class="col-lg-9">
 
             <div>
-                <h2 th:if="${advert.id == null}" >New Advert</h2>
-                <h2 th:if="${advert.id != null}" >Edit Advert</h2>
+                <h2 th:if="${advert.id == null}" >Nowe ogłoszenie</h2>
+                <h2 th:if="${advert.id != null}" >Edytuj ogłoszenie</h2>
                 <form th:object="${advert}" th:action="@{/advert/}" method="post">
                     <input type="hidden" th:field="*{id}"/>
                     <div class="form-group">
-                        <label><b>Title:</b> </label>
+                        <label><b>Tytuł:</b> </label>
 
-                        <input type="text" placeholder="Title" class="form-control" maxlength="50" th:field="*{title}"
+                        <input type="text" placeholder="tytuł" class="form-control" maxlength="50" th:field="*{title}"
                                th:value="${advert.title}" required></br>
 
-                        <label><b>Select Category</b></label></br>
+                        <label><b>Kategoria</b></label></br>
                         <select class="form-control" th:field="*{advertType}">
                             <option
                                     th:each="type : ${advertType}"
@@ -35,26 +35,26 @@
 
                         </select></br>
 
-                        <label><b>Requested Item:</b></label>
-                        <input type="text" placeholder="Requested Item" class="form-control" maxlength="50"
+                        <label><b>Poszukuje:</b></label>
+                        <input type="text" placeholder="poszukuje" class="form-control" maxlength="50"
                                th:field="*{requestedItem}"></br>
 
 
-                        <label><b>Offered Item:</b></label>
-                        <input type="text" placeholder="Offered Item" class="form-control" maxlength="50"
+                        <label><b>Oferuje:</b></label>
+                        <input type="text" placeholder="oferuje" class="form-control" maxlength="50"
                                th:field="*{offeredItem}"></br>
 
-                        <label><b>Price:</b></label>
-                        <input type="number" step="0.01" placeholder="Put your price" class="form-control"
+                        <label><b>Cena:</b></label>
+                        <input type="number" step="0.01" placeholder="cena" class="form-control"
                                th:field="*{price}"></br>
 
-                        <label><b>Description:</b></label>
-                        <textarea placeholder="input your post content" class="form-control"
+                        <label><b>Opis:</b></label>
+                        <textarea placeholder="dodaj opis" class="form-control"
                                   maxlength="300" th:field="*{description}"></textarea></br>
 
-                        <input type="submit" value="Save" class="btn btn-primary mt-2 float-center">
-                        <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts}" th:if="${advert.id == null}">Cancel</a>
-                        <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{'/adverts/' + ${advert.id} + '/show'}" th:if="${advert.id != null}">Cancel</a>
+                        <input type="submit" value="Dodaj" class="btn btn-primary mt-2 float-center">
+                        <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{/adverts}" th:if="${advert.id == null}">Anuluj</a>
+                        <a type="submit" class="btn btn-primary mt-2 float-center" th:href="@{'/adverts/' + ${advert.id} + '/show'}" th:if="${advert.id != null}">Anuluj</a>
 
                     </div>
                 </form>

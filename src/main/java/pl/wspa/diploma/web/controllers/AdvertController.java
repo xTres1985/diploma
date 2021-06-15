@@ -24,7 +24,30 @@ public class AdvertController {
         this.userService = userService;
     }
 
-    @GetMapping({"/adverts", "/", ""})
+    @GetMapping("/")
+    public String homePage(Model model, Authentication authentication) {
+
+        model.addAttribute("authentication", authentication);
+        model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
+
+        return "index";
+    }
+
+    @GetMapping("/about")
+    public String aboutPage(Model model, Authentication authentication) {
+
+        model.addAttribute("authentication", authentication);
+        model.addAttribute("user", userService.getUserBasedOnAuth(authentication));
+        model.addAttribute("isUser", userService.isUser(authentication));
+        model.addAttribute("isAdmin", userService.isAdmin(authentication));
+
+        return "about";
+    }
+
+
+    @GetMapping("/adverts")
     public String allAdverts(Model model, Authentication authentication) {
 
         model.addAttribute("adverts", advertService.findAll());
