@@ -32,7 +32,7 @@
                         <label><b>Nazwa użytkownika:</b></label >
                         <input type="text" placeholder="nazwa użytkownika" class="form-control" maxlength="50"
                                th:field="*{nickname}"
-                               th:value="${userDto.nickname}" ></br>
+                               th:value="${userDto.nickname}" required></br>
 
                         <label th:if="${authentication != null}"><b>Numer telefonu:</b></label>
                         <input th:if="${authentication != null}" type="text" placeholder="numer telefonu" class="form-control" maxlength="50"
