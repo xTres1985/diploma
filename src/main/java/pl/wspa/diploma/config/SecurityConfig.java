@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/adverts", "/login", "/register", "/about", "/", "/vendor/**", "/css/**", "/static/**").permitAll()
-                .antMatchers("/adverts/**").hasAnyRole("USER", "ADMIN")
+
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()

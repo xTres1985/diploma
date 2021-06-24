@@ -23,4 +23,5 @@ public class AdvertDto {
     private String requestedItem;
     private Double price;
     private UserDto userDto;
+    private Byte[] Image;
 }

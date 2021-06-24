@@ -37,5 +37,8 @@ public class AdvertDao {
     @JoinColumn(name = "userDao_id")
     private UserDao userDao;
 
+    @Lob
+    private Byte[] Image;
+
 
 }

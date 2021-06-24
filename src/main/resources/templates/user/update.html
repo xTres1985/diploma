@@ -22,17 +22,17 @@
                     <div class="form-group">
                         <label><b>Adres email:</b></label>
                         <input type="email" placeholder="email" class="form-control" maxlength="50" th:field="*{email}"
-                               th:value="${userDto.email}" required></br>
+                               th:value="${userDto.email}"></br>
 
                         <label><b>Hasło:</b></label>
                         <input type="password" placeholder="hasło" class="form-control" maxlength="50"
                                th:field="*{password}"
-                               th:value="${userDto.password}" required></br>
+                               th:value="${userDto.password}"></br>
 
                         <label><b>Nazwa użytkownika:</b></label >
                         <input type="text" placeholder="nazwa użytkownika" class="form-control" maxlength="50"
                                th:field="*{nickname}"
-                               th:value="${userDto.nickname}" required></br>
+                               th:value="${userDto.nickname}"></br>
 
                         <label th:if="${authentication != null}"><b>Numer telefonu:</b></label>
                         <input th:if="${authentication != null}" type="text" placeholder="numer telefonu" class="form-control" maxlength="50"

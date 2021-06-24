@@ -72,8 +72,7 @@ public class UserController {
         model.addAttribute("isUser", userService.isUser(authentication));
         model.addAttribute("isAdmin", userService.isAdmin(authentication));
 
-
-        return "user/register";
+        return "user/update";
     }
 
     @GetMapping("/login")

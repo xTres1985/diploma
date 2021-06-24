@@ -37,6 +37,7 @@ public class AdvertDaoToDto implements Converter<AdvertDao, AdvertDto> {
         advertDto.setOfferedItem(source.getOfferedItem());
         advertDto.setRequestedItem(source.getRequestedItem());
         advertDto.setPrice(source.getPrice());
+        advertDto.setImage(source.getImage());
 
         if (source.getUserDao() != null) {
             advertDto.setUserDto(userDaoToDto.convert(source.getUserDao()));
